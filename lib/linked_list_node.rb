@@ -17,13 +17,20 @@ def print_values(list_node)
   end
 end
 
-def reverse_list(list)
-  stack = Stack.new
-
-  while list
-    stack.push list.value
-    list = list.next_node
-  end
-
-  stack.pop
+def reverse_list(list, previous=nil)
+  next_node = list.next_node
+  list.next_node = previous
+  list = reverse_list(next_node, list) unless next_node.nil?
+  list
 end
+
+#def reverse_list(list)
+#  stack = Stack.new
+#
+#  while list
+#    stack.push list.value
+#    list = list.next_node
+#  end
+#
+#  stack.pop
+#end

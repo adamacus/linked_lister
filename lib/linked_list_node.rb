@@ -24,6 +24,21 @@ def reverse_list(list, previous=nil)
   list
 end
 
+def has_cycle?(x0)
+  f = lambda { |x| x.nil? ? nil : x.next_node }
+
+  tortoise = f[x0]
+  hare = f[f[x0]]
+
+  while tortoise != hare
+    tortoise = f[tortoise]
+    hare = f[f[hare]]
+  end
+
+  return !tortoise.nil? || !hare.nil?
+end
+
+
 #def reverse_list(list)
 #  stack = Stack.new
 #

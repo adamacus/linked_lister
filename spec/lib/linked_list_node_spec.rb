@@ -25,5 +25,28 @@ describe LinkedListNode do
     end
   end
 
+  describe '#has_cycle?' do
+    it 'should return true if the list has a cycle' do
+      node1 = LinkedListNode.new(37)
+      node2 = LinkedListNode.new(99, node1)
+      node3 = LinkedListNode.new(12, node2)
+      node1.next_node = node3
+
+      expect(has_cycle?(node3)).to be_truthy
+    end
+
+    it 'should return false if the list does not have a cycle' do
+      node1 = LinkedListNode.new(37)
+      node2 = LinkedListNode.new(99, node1)
+      node3 = LinkedListNode.new(12, node2)
+
+      expect(has_cycle?(node3)).to be_falsey
+    end
+
+    it 'should return false for a single element' do
+      node1 = LinkedListNode.new(37)
+      expect(has_cycle?(node1)).to be_falsey
+    end
+  end
 
 end
